@@ -1,0 +1,12 @@
+{application, erlang_websockets,
+ [
+  {description, ""},
+  {vsn, "1"},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib
+                 ]},
+  {mod, { erlang_websockets_app, []}},
+  {env, []}
+ ]}.

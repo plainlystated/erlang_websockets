@@ -25,5 +25,5 @@ task :console => :compile do
 end
 
 task :start => :compile do
-  sh "erl -pa #{BEAM_DIRS.join(" ")} -s erlang_websockets start"
+  sh "erl -boot start_sasl -config ./elog.config -pa #{BEAM_DIRS.join(" ")} -s erlang_websockets start"
 end

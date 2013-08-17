@@ -6,8 +6,8 @@
 
 <body>
     <div id="status"></div>
-    <div id="clock"></div>
-    <button class="live_button" id="start">start</button>
+    <div id="svg"></div>
+    <button class="live_button" id="add-circle">New Circle</button>
     <button class="live_button" id="stop">stop</button>
 </body>
 
@@ -15,6 +15,32 @@
 $(document).ready(run);
 
 function run(){
-    connect_to_erlang("localhost", 8080, "clock");
+    connect_to_erlang("localhost", 8080, "circles");
+}
+
+var canvas;
+var svg_ns='http://www.w3.org/2000/svg';
+
+function add_canvas(o){
+    canvas = document.createElementNS(svg_ns, 'svg');
+    canvas.setAttribute("width",  o.width);
+    canvas.setAttribute("height", o.height );
+    canvas.setAttribute("style",  "background-color:#eeffbb");
+    $('#'+o.tag).append(canvas);
+}
+
+function add_svg_thing(o){
+    var obj = document.createElementNS(svg_ns, o.type);
+    for(key in o){
+	var val = o[key];
+	obj.setAttributeNS(null, key, val);
+    };
+    canvas.appendChild(obj);
+}
+
+function remove_svg_thing(o) {
+  var query = o.type + "#" + o.id;
+  //console.log("query: " + query);
+  $(query).remove();
 }
 </script>
